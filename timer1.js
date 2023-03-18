@@ -10,7 +10,7 @@ const setAlarm = function(args) {
       }, delay);
     }
   }
-}
+};
 
 setAlarm(args);
 // Implement an alarm clock / timer which will beep after a specified amount of time has passed.
