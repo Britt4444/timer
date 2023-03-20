@@ -1,10 +1,9 @@
 let args = process.argv.slice(2);
 
 const setAlarm = function(args) {
-  let delay = 0;
   for (let i = 0; i < args.length; i++) {
-    delay = parseInt(args[i]) * 1000;
-    if (typeof args[i] !== 'number' && args[i] >= 0) {
+    const delay = parseInt(args[i]) * 1000;
+    if (typeof delay === 'number' && delay >= 0) {
       setTimeout(() => {
         process.stdout.write('\x07');
       }, delay);
@@ -13,6 +12,14 @@ const setAlarm = function(args) {
 };
 
 setAlarm(args);
+
+// CODE REVIEW NOTES 
+// typeof doesn't convert the value before comparison. javascript typeof '1' === 'number' // false
+// You should pass the result of the parseInt function instead. javascript const delay = parseInt(args[i]);
+// if (typeof delay !== 'number' && delay >= 0) { setTimeout(() => { ... }, delay * 1000); The delay variable
+// is declared inside the for loop because the variable is not used outside the loop.
+
+
 // Implement an alarm clock / timer which will beep after a specified amount of time has passed.
 // The user can specify an unlimited number of alarms using command line arguments
 
